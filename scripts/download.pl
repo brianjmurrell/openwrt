@@ -125,7 +125,7 @@ sub download
 			}
 		};
 	} else {
-		open WGET, "which curl 2>/dev/null && curl -k $curl_options '$mirror/$filename' || wget -t5 --timeout=20 --no-check-certificate $wget_options -O- '$mirror/$filename' |" or die "Cannot launch curl or wget.\n";
+		open WGET, "which curl >/dev/null 2>&1 && curl -k $curl_options '$mirror/$filename' || wget -t5 --timeout=20 --no-check-certificate $wget_options -O- '$mirror/$filename' |" or die "Cannot launch curl or wget.\n";
  		$hash_cmd and do {
 			open MD5SUM, "| $hash_cmd > '$target/$filename.hash'" or die "Cannot launch $hash_cmd.\n";
 		};
